@@ -1,0 +1,152 @@
+Online learning platform
+
+COURSE
+id
+title [string x chars, unique, present]
+description [string x chars, unique, present]
+has_many lessons
+has_many students
+
+LESSON
+id
+title [string x chars, unique, present]
+content [string x chars, present]
+belongs_to course
+has_many assignments
+
+ASSIGNMENT
+id
+content [string x chars, present]
+belongs_to lesson
+
+STUDENT
+id
+name [string x chars, present]
+has_many courses
+
+COMPLETED_LESSONS
+student_id
+lesson_id
+
+COMPLETED_ASSIGNMENTS
+student_id
+assignment_id
+
+-------------------------------------------------
+Profile tab
+
+USER
+id
+username [string, x chars, unique, present]
+email [string, is email, unique, present]
++
+age [int]
+gender [m/f]
+(city_id)
+has_one city
+
+CITY
+id
+name [string x chars, present]
+state [is a state]
+country [is a country]
+
+------------------------------------------------
+Virtual pinboard
+
+BOARD
+id
+has_many pins
+has_many comments through pins
+has_many users through pins
+
+PIN
+id
+url [present, unique, is url]
+(board_id)
+(user_id)
+belongs_to board
+belongs_to user
+has_many comments
+
+USER
+id
+username [string, unique, present]
+email [string, unique, present]
+password [min length]
+has_many pins
+has_many comments
+
+COMMENT
+id
+text [present, not obscene and whatever]
+(pin_id)
+(user_id)
+belongs_to user
+belongs_to pin
+
+------------------------------------------------
+Hacker news
+
+USER
+id
+username
+email
+password
+has_many posts
+has_many comments
+
+POST
+id
+title [present]
+link [is a url]
+has_many comments
+belongs_to user
+
+COMMENT
+id
+text [present, not obscene or whatever]
+has_many comments
+belongs_to post
+belongs_to user
+
+------------------------------------------------
+Micro Reddit
+
+USER
+id
+username
+email
+password
+has_many posts
+has_many comments
+has_many subreddits through subscription???
+
+SUBREDDIT
+id
+name
+has_many posts
+
+POST
+id
+title
+body
+user_id
+belongs_to subreddit
+belongs_to user
+has_many comments
+
+COMMENT
+id
+body
+post_id
+user_id
+belongs_to user
+belongs_to post
+
+SUBSCRIPTION
+id
+user_id
+subreddit_id
+belongs_to user
+belongs_to subreddit
