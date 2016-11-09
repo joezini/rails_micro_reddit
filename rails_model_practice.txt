@@ -121,6 +121,7 @@ password
 has_many posts
 has_many comments
 has_many subreddits through subscription???
+rails generate model User username:string email:string password:string
 
 SUBREDDIT
 id
@@ -129,12 +130,14 @@ has_many posts
 
 POST
 id
-title
+title - present
+link - url
 body
 user_id
 belongs_to subreddit
 belongs_to user
 has_many comments
+rails generate model Post title:string link:string body:string
 
 COMMENT
 id
